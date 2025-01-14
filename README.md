@@ -11,12 +11,16 @@ This sample python flask application details are as follows:
 
 ## Step-02: How to run the flask application
 
-### 2.1: Install `Python`
+### 2.1: Download & Install `Python`
 
 ```
 # To check installed version of Python
 python --version
 
+[if the precending command says there is no python program present, proceed with the next command else skip & move to #2.2]
+
+# Python download link
+https://www.python.org/downloads/
 ```
 
 ### 2.2: Install `pip` package manager

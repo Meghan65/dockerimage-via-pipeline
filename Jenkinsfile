@@ -29,15 +29,21 @@ pipeline{
      }
       stage("Build docker Image"){
         steps{
+          script{
+            docker.withServer('unix:///var/run/docker.sock'){
+
+               sh 'docker image build -t $IMAGE_NAME .'
+            
+            }
+          }
                
-               sh 'docker image build -t shinde1/python-flask-app:via-pipeline .'
         }
 
       }
       stage("Push docker Image into registory"){
         steps{
 
-               sh 'docker image push shinde1/python-flask-app:via-pipeline'
+               sh 'docker image push $IMAGE_NAME'
 
         }
       }

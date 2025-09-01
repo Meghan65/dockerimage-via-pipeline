@@ -18,7 +18,7 @@ pipeline{
        steps{
          script{
 
-            docker.withRegistry("${REGISTRY_URL}", "${CREDS_ID}"){
+            withDockerRegistry(CREDS_ID:"dockerhub-creds"){
 
               echo "verifying creds"
               

@@ -17,12 +17,16 @@ pipeline{
       stage("Docker login"){
        steps{
          script{
-
-            docker.withRegistry('https://index.docker.io/v1/', CREDS_ID){
+            docker.withServer('unix:///var/run/docker.sock'){
+            docker.withRegistry('https://index.docker.io/v1/', "${CREDS_ID}"){
 
               echo "verifying creds"
               
             }
+            
+            
+            }
+            
          }
             
        }
@@ -30,9 +34,7 @@ pipeline{
       stage("Build docker Image"){
         steps{
           script{
-            docker.withServer('unix:///var/run/docker.sock'){
-
-               sh 'docker image build -t $IMAGE_NAME .'
+            sh 'docker image build -t $IMAGE_NAME .'
             
             }
           }

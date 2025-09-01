@@ -27,8 +27,8 @@ pipeline{
      stage("Build docker Image"){
         steps{
 
-              echo "sh 'docker image build -t $IMAGE_NAME .'"
-
+              //echo "sh 'docker image build -t $IMAGE_NAME .'"
+              docker.build("${IMAGE_NAME}")
           
             
             }
@@ -36,8 +36,8 @@ pipeline{
      stage("Push docker Image into registory"){
         steps{
 
-               echo "sh 'docker image push $IMAGE_NAME'"
-               
+               //echo "sh 'docker image push $IMAGE_NAME'"
+               docker.push("${IMAGE_NAME}")
 
         }
       }

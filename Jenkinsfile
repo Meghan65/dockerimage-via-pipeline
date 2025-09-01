@@ -14,11 +14,15 @@ pipeline{
 
     stages{
 
-      //stage("Docker login"){
-       // steps{
-            
-       // }
-     // }
+      stage("Docker login"){
+       steps{
+            docker.withRegistry("${REGISTRY_URL}", "${CREDS_ID}"){
+
+              echo "verifying creds"
+              
+            }
+       }
+     }
       stage("Build docker Image"){
         steps{
                

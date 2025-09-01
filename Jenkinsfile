@@ -18,7 +18,7 @@ pipeline{
        steps{
          script{
 
-            docker.withRegistry('https://index.docker.io/v1/', "${CREDS_ID}"){
+            docker.withRegistry('https://index.docker.io/v1/', CREDS_ID){
 
               echo "verifying creds"
               

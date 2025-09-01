@@ -40,14 +40,14 @@ pipeline{
           }
                
         }
-
-      }
-      stage("Push docker Image into registory"){
+         stage("Push docker Image into registory"){
         steps{
 
                sh 'docker image push $IMAGE_NAME'
 
         }
       }
+      }
+      
     }
-}
+

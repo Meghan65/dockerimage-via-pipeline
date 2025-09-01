@@ -7,7 +7,7 @@ pipeline{
 
     environment {
 
-        //REGISTRY_URL = "https://index.docker.io/v1/"                     //docker hub url
+        REGISTRY_URL = "https://index.docker.io/v1/"                     //docker hub url
         IMAGE_NAME   = "shinde1/python-flask-app:via-pipeline"          //push image via pipeline
         CREDS_ID   = "dockerhub-creds"                                  //added docker hub creds 
     }
@@ -17,36 +17,33 @@ pipeline{
       stage("Docker login"){
        steps{
          script{
-            docker.withServer('unix:///var/run/docker.sock'){
-            docker.withRegistry('https://index.docker.io/v1/', "${CREDS_ID}"){
-
-              echo "verifying creds"
+           docker.withRegistry("${REGISTRY_URL}", "${CREDS_ID}"){
+               echo "Verify dockerhub usrename and password"
               
             }
-            
-          }
-            
-         }
-            
-       }
-     }
-      stage("Build docker Image"){
+        }
+      }
+      }
+     stage("Build docker Image"){
         steps{
-              sh 'sudo docker image build -t $IMAGE_NAME .'
+
+              sh 'docker image build -t $IMAGE_NAME .'
             
             }
           }
-        stage("Push docker Image into registory"){
+     stage("Push docker Image into registory"){
         steps{
 
-               sh 'sudo docker image push $IMAGE_NAME'
+               sh 'docker image push $IMAGE_NAME'
 
         }
       }
+
+     }
+      
                
         }
          
-}
       
       
 

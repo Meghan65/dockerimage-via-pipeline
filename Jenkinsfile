@@ -24,8 +24,7 @@ pipeline{
               
             }
             
-            
-            }
+          }
             
          }
             
@@ -33,21 +32,21 @@ pipeline{
      }
       stage("Build docker Image"){
         steps{
-          script{
-            sh 'docker image build -t $IMAGE_NAME .'
+              sh 'sudo docker image build -t $IMAGE_NAME .'
             
             }
           }
-               
-        }
-         stage("Push docker Image into registory"){
+        stage("Push docker Image into registory"){
         steps{
 
-               sh 'docker image push $IMAGE_NAME'
+               sh 'sudo docker image push $IMAGE_NAME'
 
         }
       }
-      }
+               
+        }
+         
+}
       
-    }
+      
 

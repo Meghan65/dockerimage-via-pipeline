@@ -17,6 +17,7 @@ pipeline{
       stage("Docker login"){
        steps{
          script{
+           
            docker.withRegistry("${REGISTRY_URL}", "${CREDS_ID}"){
                echo "Verify dockerhub usrename and password"
               
@@ -28,14 +29,14 @@ pipeline{
         steps{
 
               sh 'docker image build -t $IMAGE_NAME .'
-              
+              sh 'docker image ls'
           
             
             }
           }
      stage("Push docker Image into registory"){
         steps{
-
+               echo "$IMAGE_NAME"
                sh 'docker image push $IMAGE_NAME'
                
 

@@ -14,17 +14,17 @@ pipeline{
 
     stages{
 
-      stage("Docker login"){
-       steps{
-         script{
+     // stage("Docker login"){
+      // steps{
+       //  script{
            
-           docker.withRegistry("${REGISTRY_URL}", "${CREDS_ID}"){
-               echo "Verify dockerhub usrename and password"
+         //  docker.withRegistry("${REGISTRY_URL}", "${CREDS_ID}"){
+          //     echo "Verify dockerhub usrename and password"
               
-            }
-        }
-      }
-      }
+         //   }
+     //   }
+    //  }
+    //  }
      stage("Build docker Image"){
         steps{
 
@@ -36,8 +36,16 @@ pipeline{
           }
      stage("Push docker Image into registory"){
         steps{
-               echo "$IMAGE_NAME"
+          script{
+           
+           docker.withRegistry("${REGISTRY_URL}", "${CREDS_ID}"){
+               echo "Verify dockerhub usrename and password"
+               
                sh 'docker image push $IMAGE_NAME'
+              
+            }
+        }
+               
                
 
         }
